@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: auto;
+}
+
+@include mobile {
+  html,
+  body {
+    max-width: 750px;
+  }
+}
+@include tablet {
+  html,
+  body {
+    max-width: 900px;
+  }
+}
+@include desktop {
+  html,
+  body {
+    max-width: 1000px;
+  }
+}
+
+h4 {
+  margin: 4px 0;
+}

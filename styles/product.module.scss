@@ -1,0 +1,54 @@
+.product {
+  position: relative;
+  max-width: 230px;
+  margin-bottom: 24px;
+  .wishlist_btn {
+    position: absolute;
+    right: 5px;
+    font-size: 24px;
+    top: 0;
+    color: $color-gray;
+    z-index: 22;
+
+    background-color: rgba(0, 0, 0, 0);
+    background-image: none;
+    box-shadow: none;
+    border: none;
+    cursor: pointer;
+  }
+  .tour_type {
+    font-size: 11px;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .product_title {
+    text-decoration: none;
+    color: black;
+    text-align: left;
+    font-size: 14px;
+    line-height: 1.4em;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+  }
+  .display_rating {
+    font-size: 11px;
+    margin: 8px 0 0;
+  }
+  .display_price {
+    display: flex;
+    align-items: baseline;
+    font-size: 14px;
+    h4 {
+      margin-right: 8px;
+      font-size: 16px;
+    }
+  }
+  img {
+    border-radius: 8px;
+  }
+}
