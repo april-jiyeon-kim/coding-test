@@ -15,6 +15,12 @@ interface APIResponse {
 
 const fetchProducts = async () => {
   const results = await fetch(API_URL);
+
+  // handle errors
+  if (!results.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
   const result: APIResponse = await results.json();
   const products: ProductType[] = result.data;
   return products;
@@ -26,10 +32,7 @@ async function ProductList({}: Props) {
   return (
     <div className={styles.productList}>
       {products?.map((product: ProductType) => (
-        <div
-          key={product.id}
-          // href={`https://www.zoomzoomtour.com/tour/${product.id}`}
-        >
+        <div key={product.id}>
           <Product product={product} />
         </div>
       ))}

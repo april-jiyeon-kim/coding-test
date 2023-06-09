@@ -1,19 +1,44 @@
+"use client";
+
 import Image from "next/image";
 import styles from "../styles/product.module.scss";
-import React from "react";
+import React, { useState } from "react";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import {
+  faStar,
+  faHeart as solidFaHeart,
+} from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import Link from "next/link";
+import { useAppDispatch } from "@/lib/redux/hooks";
+import { decrement, increment } from "@/lib/redux/modules/wishlist";
 
 const Product: React.FC<{ product: ProductType }> = ({ product }) => {
+  const [isWishlist, setIsWishlist] = useState(false);
+  const dispatch = useAppDispatch();
+
+  const handleWishlist = () => {
+    if (isWishlist) {
+      dispatch(decrement());
+    } else {
+      dispatch(increment());
+    }
+    setIsWishlist(!isWishlist);
+  };
   return (
     <div className={styles.product}>
-      <button className={styles.wishlist_btn}>
-        <FontAwesomeIcon icon={faHeart as IconProp} />
+      <button className={styles.wishlist_btn} onClick={handleWishlist}>
+        {isWishlist ? (
+          <FontAwesomeIcon icon={solidFaHeart as IconProp} color={"red"} />
+        ) : (
+          <FontAwesomeIcon icon={faHeart as IconProp} />
+        )}
       </button>
-      <Link href={`https://www.zoomzoomtour.com/tour/${product.id}`}>
+      <Link
+        href={`https://www.zoomzoomtour.com/tour/${product.id}`}
+        target="blank"
+      >
         <Image
           src={product.representativeImageUrl}
           alt={product.title}
@@ -27,6 +52,7 @@ const Product: React.FC<{ product: ProductType }> = ({ product }) => {
       <Link
         className={styles.product_title}
         href={`https://www.zoomzoomtour.com/tour/${product.id}`}
+        target="blank"
       >
         <h4>{product.title}</h4>
       </Link>
