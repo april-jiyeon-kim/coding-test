@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import styles from "../styles/product.module.scss";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -13,10 +13,13 @@ import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import Link from "next/link";
 import { useAppDispatch } from "@/lib/redux/hooks";
 import { decrement, increment } from "@/lib/redux/modules/wishlist";
+import { filters } from "@/data/filters";
 
 const Product: React.FC<{ product: ProductType }> = ({ product }) => {
   const [isWishlist, setIsWishlist] = useState(false);
   const dispatch = useAppDispatch();
+
+  const tourType = filters.tourTypes[product.tourType].text;
 
   const handleWishlist = () => {
     if (isWishlist) {
@@ -47,7 +50,7 @@ const Product: React.FC<{ product: ProductType }> = ({ product }) => {
         />
       </Link>
       <span className={styles.tour_type}>
-        {`${product.categoryName} • ${product.tourTime}`}
+        {`${product.categoryName} • ${tourType} • ${product.tourTime}`}
       </span>
       <Link
         className={styles.product_title}
