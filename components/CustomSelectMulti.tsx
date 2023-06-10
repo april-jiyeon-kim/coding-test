@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import styles from "../styles/select.module.scss";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,7 +10,7 @@ import {
   faSquareCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import { faSquare } from "@fortawesome/free-regular-svg-icons";
-import { FiltersState } from "@/lib/redux/modules/filter";
+import { useOutsideClick } from "@/lib/useOutsideClick";
 
 const CustomSelectMulti: React.FC<{
   title: string;
@@ -19,6 +19,13 @@ const CustomSelectMulti: React.FC<{
   onChange: (selectedValues: OptionType[]) => void;
 }> = ({ title, options, selectedValues, onChange }) => {
   const [showOptions, setShowOptions] = useState(false);
+  const selectRef = useRef<HTMLButtonElement>(null);
+
+  useOutsideClick(selectRef, () => {
+    if (showOptions) {
+      setShowOptions(false);
+    }
+  });
 
   const handleSelectChange = (option: OptionType) => {
     if (selectedValues?.includes(option)) {
@@ -34,6 +41,7 @@ const CustomSelectMulti: React.FC<{
 
   return (
     <button
+      ref={selectRef}
       className={`${styles.select_box} ${filterExist && styles.selected}`}
       onClick={() => setShowOptions((prev) => !prev)}
     >
