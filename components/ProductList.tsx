@@ -8,10 +8,12 @@ import FilterTag from "./FilterTag";
 import FilterType from "@/types/FilterType";
 import { API_URL } from "@/constants";
 import { fetchProducts } from "@/services/products";
+import Loading from "./Loading";
 
 type Props = {};
 
 function ProductList({}: Props) {
+  const [loading, setLoading] = useState<boolean>(true);
   const [products, setProducts] = useState<ProductType[]>([]);
   const filter = useAppSelector((state) => state.filter);
 
@@ -22,15 +24,26 @@ function ProductList({}: Props) {
   }, []);
 
   useEffect(() => {
+    setLoading(true);
     fetchProducts(filter)
-      .then((products) => setProducts(products))
-      .catch((error) => console.error("Fetch error:", error));
+      .then((products) => {
+        setProducts(products);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Fetch error:", error);
+        setLoading(false);
+      });
   }, [filter]);
 
   return (
     <>
       <div className={styles.displayResult}>
-        <b>{`검색결과: ${products?.length}개 상품`}</b>
+        <b>
+          {loading
+            ? "검색결과 불러오는 중..."
+            : `검색결과: ${products?.length}개 상품`}
+        </b>
 
         <div className={styles.displayFilters}>
           {filter.tourTypes?.map((tag) => {
@@ -51,9 +64,15 @@ function ProductList({}: Props) {
         </div>
       </div>
       <div className={styles.productList}>
-        {products?.map((product: ProductType) => (
-          <Product key={product.id} product={product} />
-        ))}
+        {loading ? (
+          <div className={styles.overlay}>
+            <Loading />
+          </div>
+        ) : (
+          products?.map((product: ProductType) => (
+            <Product key={product.id} product={product} />
+          ))
+        )}
       </div>
     </>
   );
