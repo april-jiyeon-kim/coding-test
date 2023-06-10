@@ -1,8 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import styles from "../styles/product.module.scss";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -11,12 +10,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import Link from "next/link";
-import { useAppDispatch } from "@/lib/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
 import { decrement, increment } from "@/lib/redux/modules/wishlist";
 import { filters } from "@/data/filters";
 
 const Product: React.FC<{ product: ProductType }> = ({ product }) => {
-  const [isWishlist, setIsWishlist] = useState(false);
+  const wishlist = useAppSelector((state) => state.wishlist.items);
+  const isWishlist = wishlist[product.id] || false;
   const dispatch = useAppDispatch();
 
   const tourType = filters.tourTypes[product.tourType].text;
@@ -26,12 +26,12 @@ const Product: React.FC<{ product: ProductType }> = ({ product }) => {
   };
 
   const handleWishlist = () => {
+    const { id } = product;
     if (isWishlist) {
-      dispatch(decrement());
+      dispatch(decrement(id));
     } else {
-      dispatch(increment());
+      dispatch(increment(id));
     }
-    setIsWishlist(!isWishlist);
   };
   return (
     <div className={styles.product}>
