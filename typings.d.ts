@@ -38,3 +38,8 @@ type ProductType = {
   dest: string;
   seller: object;
 };
+
+type OptionType = {
+  key: string;
+  text: string;
+};

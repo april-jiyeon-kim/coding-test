@@ -1,0 +1,60 @@
+.select_box {
+  background-color: white;
+  color: black;
+  border-radius: 45px;
+  margin-right: 8px;
+  height: 42px;
+  padding: 10px 16px;
+  font-size: 16px;
+  position: relative;
+  border: 1px solid black;
+  cursor: pointer;
+  &.selected {
+    background-color: $color-primary;
+    border: none;
+    color: white;
+  }
+  .title {
+    margin-right: 32px;
+  }
+  .selected_total {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    top: 11px;
+    right: 11px;
+    padding: 2px;
+    background-color: white;
+    color: $color-primary;
+    border-radius: 100%;
+  }
+  .options {
+    padding: 10px 0;
+    position: absolute;
+    top: 46px;
+    left: 0;
+    background-color: white;
+    z-index: 23;
+    width: 100%;
+    border: 1px solid $color-gray;
+    border-radius: 8px;
+    color: black;
+    .option {
+      text-align: left;
+      padding: 4px 0 4px 32px;
+      display: flex;
+      align-items: center;
+      &:hover {
+        background-color: rgb(10, 202, 111, 0.5);
+      }
+      span {
+        position: absolute;
+        color: $color-gray;
+        left: 8px;
+        &.selected_option {
+          color: $color-primary;
+        }
+      }
+    }
+  }
+}

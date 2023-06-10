@@ -1,0 +1,14 @@
+.filter_tag {
+  background-color: $color-gray;
+  color: black;
+  border-radius: 40px;
+  margin-right: 4px;
+  margin-bottom: 4px;
+  border: none;
+  font-size: 12px;
+  padding: 5px 10px;
+  cursor: pointer;
+  span {
+    margin-left: 10px;
+  }
+}

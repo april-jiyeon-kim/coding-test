@@ -1,6 +1,7 @@
 .filter_wrapper {
   border-top: 1px solid $color-gray;
   border-bottom: 1px solid $color-gray;
+  padding-bottom: 32px;
 }
 
 .productList {
@@ -10,4 +11,12 @@
   min-height: 300px;
   padding: 10px;
   justify-content: space-between;
+}
+
+.displayResult {
+  margin: 20px 0;
+}
+
+.displayFilters {
+  margin: 16px 0;
 }
