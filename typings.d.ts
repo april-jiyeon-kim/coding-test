@@ -43,3 +43,9 @@ type OptionType = {
   key: string;
   text: string;
 };
+
+interface APIResponse {
+  status: number;
+  success: boolean;
+  data: ProductType[];
+}
