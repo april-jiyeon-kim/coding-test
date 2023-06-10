@@ -21,6 +21,10 @@ const Product: React.FC<{ product: ProductType }> = ({ product }) => {
 
   const tourType = filters.tourTypes[product.tourType].text;
 
+  const style = {
+    backgroundImage: `url(${product.representativeImageUrl})`,
+  };
+
   const handleWishlist = () => {
     if (isWishlist) {
       dispatch(decrement());
@@ -42,12 +46,7 @@ const Product: React.FC<{ product: ProductType }> = ({ product }) => {
         href={`https://www.zoomzoomtour.com/tour/${product.id}`}
         target="blank"
       >
-        <Image
-          src={product.representativeImageUrl}
-          alt={product.title}
-          width={230}
-          height={250}
-        />
+        <div className={styles.img_container} style={style}></div>
       </Link>
       <span className={styles.tour_type}>
         {`${product.categoryName} • ${tourType} • ${product.tourTime}`}

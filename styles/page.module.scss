@@ -1,19 +1,18 @@
 .filter_wrapper {
   border-top: 1px solid $color-gray;
   border-bottom: 1px solid $color-gray;
-  padding-bottom: 24px;
+  padding: 0 20px 24px;
 }
 
 .productList {
   display: flex;
   flex-wrap: wrap;
   min-height: 300px;
-  padding: 10px;
-  justify-content: space-between;
+  margin: 0 10px;
 }
 
 .displayResult {
-  margin: 20px 0;
+  margin: 20px;
 }
 
 .displayFilters {

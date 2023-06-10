@@ -52,9 +52,7 @@ function ProductList({}: Props) {
       </div>
       <div className={styles.productList}>
         {products?.map((product: ProductType) => (
-          <div key={product.id}>
-            <Product product={product} />
-          </div>
+          <Product key={product.id} product={product} />
         ))}
       </div>
     </>
