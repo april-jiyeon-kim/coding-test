@@ -17,12 +17,7 @@ function ProductList({}: Props) {
   const [products, setProducts] = useState<ProductType[]>([]);
   const filter = useAppSelector((state) => state.filter);
 
-  useEffect(() => {
-    fetchProducts()
-      .then((products) => setProducts(products))
-      .catch((error) => console.error("Fetch error:", error));
-  }, []);
-
+  // fetch products based on the provided filter
   useEffect(() => {
     setLoading(true);
     fetchProducts(filter)
