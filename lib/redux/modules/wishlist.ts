@@ -1,9 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
+interface Item {
+  id: number;
+  title: string;
+}
+
 export interface WishListState {
   number: number;
-  items: { [id: number]: boolean };
+  items: { [id: string]: Item };
 }
 
 const initialState: WishListState = {
@@ -15,16 +20,18 @@ export const wishListSlice = createSlice({
   name: "wishlist",
   initialState,
   reducers: {
-    increment: (state, action: PayloadAction<number>) => {
-      const id = action.payload;
-      if (!state.items[id]) {
-        state.items[id] = true;
+    increment: (state, action: PayloadAction<Item>) => {
+      const newItem = action.payload;
+      const existingItem = state.items[newItem.id];
+      if (!existingItem) {
+        state.items[newItem.id] = newItem;
         state.number += 1;
       }
     },
     decrement: (state, action: PayloadAction<number>) => {
       const id = action.payload;
-      if (state.items[id]) {
+      const existingItem = state.items[id];
+      if (existingItem) {
         delete state.items[id];
         state.number -= 1;
       }

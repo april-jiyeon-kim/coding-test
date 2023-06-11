@@ -26,11 +26,11 @@ const Product: React.FC<{ product: ProductType }> = ({ product }) => {
   };
 
   const handleWishlist = () => {
-    const { id } = product;
+    const { id, title } = product;
     if (isWishlist) {
       dispatch(decrement(id));
     } else {
-      dispatch(increment(id));
+      dispatch(increment({ id, title }));
     }
   };
   return (
