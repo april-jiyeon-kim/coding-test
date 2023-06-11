@@ -48,9 +48,9 @@ const Product: React.FC<{ product: ProductType }> = ({ product }) => {
       >
         <div className={styles.img_container} style={style}></div>
       </Link>
-      <span className={styles.tour_type}>
+      <div className={styles.tour_type}>
         {`${product.categoryName} • ${tourType} • ${product.tourTime}`}
-      </span>
+      </div>
       <Link
         className={styles.product_title}
         href={`https://www.zoomzoomtour.com/tour/${product.id}`}
