@@ -49,7 +49,7 @@ const Product: React.FC<{ product: ProductType }> = ({ product }) => {
         <div className={styles.img_container} style={style}></div>
       </Link>
       <div className={styles.tour_type}>
-        {`${product.categoryName} • ${tourType} • ${product.tourTime}`}
+        {`${product.categoryName} • ${product.tourTime}`}
       </div>
       <Link
         className={styles.product_title}
